@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Bot, Cpu, Database, Globe, Layers, Zap, Code, Terminal, BrainCircuit, Rocket } from 'lucide-react';
 import { NavItem, Service, TechStackItem } from './types';
