@@ -1,6 +1,7 @@
 import React from 'react';
 import Navbar from './components/Navbar';
 import AIConsultant from './components/AIConsultant';
+import FloatingChat from './components/FloatingChat';
 import { SERVICES, TECH_STACK, PROCESS_STEPS } from './constants';
 import { ArrowRight, CheckCircle2, Terminal, Code2, Globe, Github, Twitter, Linkedin, Mail, Rocket, Cpu, Sparkles } from 'lucide-react';
 
@@ -8,6 +9,7 @@ const App: React.FC = () => {
   return (
     <div className="min-h-screen selection:bg-blue-100 selection:text-blue-900">
       <Navbar />
+      <FloatingChat />
 
       {/* Hero Section */}
       <section className="relative pt-20 pb-16 lg:pt-56 lg:pb-40 overflow-hidden hero-gradient md:pt-32 md:pb-24">
