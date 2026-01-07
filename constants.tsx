@@ -5,7 +5,7 @@ import { NavItem, Service, TechStackItem } from './types';
 export const NAV_ITEMS: NavItem[] = [
   { label: 'Approach', href: '#approach' },
   { label: 'Solutions', href: '#services' },
-  { label: 'AI Twin', href: '#ai' },
+
   { label: 'Connect', href: '#contact' },
 ];
 

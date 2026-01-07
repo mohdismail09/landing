@@ -1,7 +1,6 @@
 import React from 'react';
 import Navbar from './components/Navbar';
-import AIConsultant from './components/AIConsultant';
-import FloatingChat from './components/FloatingChat';
+
 import { SERVICES, TECH_STACK, PROCESS_STEPS } from './constants';
 import { ArrowRight, CheckCircle2, Terminal, Code2, Globe, Github, Twitter, Linkedin, Mail, Rocket, Cpu, Sparkles } from 'lucide-react';
 
@@ -9,7 +8,6 @@ const App: React.FC = () => {
   return (
     <div className="min-h-screen selection:bg-blue-100 selection:text-blue-900">
       <Navbar />
-      <FloatingChat />
 
       {/* Hero Section */}
       <section className="relative pt-20 pb-16 lg:pt-56 lg:pb-40 overflow-hidden hero-gradient md:pt-32 md:pb-24">
@@ -173,8 +171,7 @@ const App: React.FC = () => {
         </div>
       </section>
 
-      {/* AI Twin Section */}
-      <AIConsultant />
+
 
       {/* CTA Section */}
       <section id="contact" className="py-16 md:py-24 lg:py-32">
@@ -192,6 +189,9 @@ const App: React.FC = () => {
                 <div className="flex items-center justify-center gap-3 md:gap-4 text-white px-6 md:px-8 py-4 md:py-6 bg-white/5 backdrop-blur-sm rounded-lg md:rounded-2xl lg:rounded-[2rem] border border-white/10 group cursor-pointer hover:bg-white/10 transition-colors">
                   <Mail className="w-5 h-5 md:w-6 md:h-6 text-blue-400" />
                   <span className="font-bold text-sm md:text-lg">hi@mohdismail.com</span>
+                </div>
+                <div className="flex items-center justify-center gap-3 md:gap-4 text-white px-6 md:px-8 py-4 md:py-6 bg-white/5 backdrop-blur-sm rounded-lg md:rounded-2xl lg:rounded-[2rem] border border-white/10 group cursor-pointer hover:bg-white/10 transition-colors">
+                  <span className="font-bold text-sm md:text-lg">7032229659</span>
                 </div>
               </div>
             </div>
