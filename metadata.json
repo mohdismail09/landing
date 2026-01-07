@@ -1,0 +1,8 @@
+{
+  "name": "Copy of Mohd Ismail | AI & Automation Expert",
+  "description": "Personal portfolio and landing page for Mohd Ismail, specializing in Python, LLMs, and business automation.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
