@@ -50,8 +50,8 @@ export const SERVICES: Service[] = [
 
 export const TECH_STACK: TechStackItem[] = [
   { name: 'Python', category: 'Backend', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg' },
-  { name: 'LangChain', category: 'LLM Framework', icon: 'https://raw.githubusercontent.com/langchain-ai/langchain/master/docs/static/img/langchain_logo.png' },
-  { name: 'Google Gemini', category: 'Models', icon: 'https://www.gstatic.com/lamda/images/favicon_v2_192x192.png' },
+  { name: 'LangChain', category: 'LLM Framework', icon: 'https://static.cdnlogo.com/logos/l/8/langchain_800.png' },
+  { name: 'Google Gemini', category: 'Models', icon: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Google_Gemini_logo.svg/1024px-Google_Gemini_logo.svg.png' },
   { name: 'FastAPI', category: 'Backend', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg' },
   { name: 'Pinecone', category: 'Vector DB', icon: 'https://www.pinecone.io/favicon.ico' },
   { name: 'Docker', category: 'DevOps', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg' },

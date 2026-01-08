@@ -1,91 +1,167 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 
 import { SERVICES, TECH_STACK, PROCESS_STEPS } from './constants';
-import { ArrowRight, CheckCircle2, Terminal, Code2, Globe, Github, Twitter, Linkedin, Mail, Rocket, Cpu, Sparkles } from 'lucide-react';
+import { ArrowRight, CheckCircle2, Terminal, Code2, Globe, Github, Twitter, Linkedin, Mail, Rocket, Cpu, Sparkles, Bot, Database, MessageSquare, BrainCircuit, FileText, Send } from 'lucide-react';
 
 const App: React.FC = () => {
+  const [activeWorkflow, setActiveWorkflow] = useState(0);
+
+  const WORKFLOWS = [
+    {
+      trigger: { icon: Mail, label: 'New Lead', color: 'bg-blue-50 text-blue-600 border-blue-100', ring: 'group-hover:border-blue-400' },
+      agent: { icon: Bot, label: 'Research Prospect', color: 'bg-emerald-50 text-emerald-600 border-emerald-100', ring: 'group-hover:border-emerald-400' },
+      action: { icon: Database, label: 'Update CRM', color: 'bg-amber-50 text-amber-600 border-amber-100', ring: 'group-hover:border-amber-400' }
+    },
+    {
+      trigger: { icon: MessageSquare, label: 'Support Ticket', color: 'bg-violet-50 text-violet-600 border-violet-100', ring: 'group-hover:border-violet-400' },
+      agent: { icon: BrainCircuit, label: 'Draft Reply', color: 'bg-rose-50 text-rose-600 border-rose-100', ring: 'group-hover:border-rose-400' },
+      action: { icon: Send, label: 'Slack Team', color: 'bg-sky-50 text-sky-600 border-sky-100', ring: 'group-hover:border-sky-400' }
+    },
+    {
+      trigger: { icon: FileText, label: 'Meeting Notes', color: 'bg-orange-50 text-orange-600 border-orange-100', ring: 'group-hover:border-orange-400' },
+      agent: { icon: Sparkles, label: 'Extract Tasks', color: 'bg-indigo-50 text-indigo-600 border-indigo-100', ring: 'group-hover:border-indigo-400' },
+      action: { icon: CheckCircle2, label: 'Create Asana', color: 'bg-cyan-50 text-cyan-600 border-cyan-100', ring: 'group-hover:border-cyan-400' }
+    }
+  ];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveWorkflow((prev) => (prev + 1) % WORKFLOWS.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div className="min-h-screen selection:bg-blue-100 selection:text-blue-900">
       <Navbar />
 
       {/* Hero Section */}
-      <section className="relative pt-20 pb-16 lg:pt-56 lg:pb-40 overflow-hidden hero-gradient md:pt-32 md:pb-24">
+      <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-white">
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="lg:grid lg:grid-cols-12 lg:gap-16 items-center">
-            <div className="lg:col-span-7 mb-12 lg:mb-0 text-center lg:text-left">
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-50 border border-blue-100 text-blue-600 text-[10px] font-black mb-4 uppercase tracking-[0.2em] animate-float">
-                <Sparkles className="w-3 h-3" /> Available for Select Contracts
+          <div className="text-center max-w-4xl mx-auto mb-16">
+            <h1 className="text-5xl md:text-7xl font-[900] leading-tight text-slate-900 mb-6 tracking-tighter">
+              Automate your work with <br />
+              <span className="text-blue-600 relative inline-block">
+                Intelligent Agents
+                <svg className="absolute w-full h-3 -bottom-1 left-0 text-blue-200 -z-10" viewBox="0 0 100 10" preserveAspectRatio="none">
+                  <path d="M0 5 Q 50 10 100 5" stroke="currentColor" strokeWidth="8" fill="none" />
+                </svg>
+              </span>
+            </h1>
+            <p className="text-xl md:text-2xl text-slate-500 mb-10 max-w-2xl mx-auto font-medium leading-relaxed">
+              I build custom AI workflows that connect your apps and reclaim 100+ hours of team capacity. No monthly fees, just code that works.
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <a href="https://calendly.com/hello-mohdismail/30min" target="_blank" rel="noopener noreferrer" className="px-8 py-4 bg-slate-900 hover:bg-slate-800 text-white rounded-full font-bold text-lg transition-all hover:scale-105 shadow-xl shadow-slate-900/20 flex items-center gap-2">
+                Start Building <ArrowRight className="w-5 h-5" />
+              </a>
+              <a href="#services" className="px-8 py-4 bg-white border border-slate-200 hover:border-slate-300 text-slate-600 hover:text-slate-900 rounded-full font-bold text-lg transition-all hover:bg-slate-50">
+                View Solutions
+              </a>
+            </div>
+          </div>
+
+          {/* Interactive Workflow Visual - Zapier Style */}
+          <div className="relative max-w-5xl mx-auto">
+            <div className="bg-white rounded-2xl border border-slate-200 shadow-2xl overflow-hidden">
+              <div className="bg-slate-50 border-b border-slate-200 p-4 flex items-center gap-2">
+                <div className="flex gap-1.5">
+                  <div className="w-3 h-3 rounded-full bg-red-400"></div>
+                  <div className="w-3 h-3 rounded-full bg-amber-400"></div>
+                  <div className="w-3 h-3 rounded-full bg-emerald-400"></div>
+                </div>
+                <div className="ml-4 bg-white px-3 py-1 rounded-md text-xs font-mono text-slate-500 border border-slate-200 flex items-center gap-2">
+                  <Globe className="w-3 h-3" /> workflow_engine.py
+                </div>
               </div>
-              <h1 className="text-4xl md:text-5xl lg:text-[84px] font-[900] leading-tight md:leading-[1] text-slate-900 mb-5 md:mb-8 tracking-tighter">
-                I build your <br />
-                <span className="text-gradient">Digital Workforce.</span>
-              </h1>
-              <p className="text-base md:text-lg lg:text-xl text-slate-500 mb-6 md:mb-10 max-w-xl mx-auto lg:mx-0 leading-relaxed font-medium">
-                High-performance Python developer and AI engineer. I architect custom agentic systems that reclaim 100+ hours of your monthly team capacity.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-3 md:gap-5 justify-center lg:justify-start">
-                <a href="#contact" className="px-6 md:px-10 py-3 md:py-5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl md:rounded-2xl font-black text-sm md:text-lg flex items-center justify-center gap-3 transition-all group shadow-xl shadow-blue-600/25 active:scale-95">
-                  Book Free Audit <ArrowRight className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform" />
-                </a>
-                <a href="#services" className="px-6 md:px-10 py-3 md:py-5 bg-white border border-slate-200 hover:border-blue-200 text-slate-600 rounded-xl md:rounded-2xl font-black text-sm md:text-lg flex items-center justify-center gap-2 transition-all hover:bg-slate-50">
-                  Solutions
-                </a>
+
+              <div className="p-8 md:p-12 bg-slate-50/50 relative">
+                {/* Workflow Nodes */}
+                <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8 relative z-10 min-h-[300px] md:min-h-[160px]">
+
+                  {/* Trigger */}
+                  <div className={`bg-white p-4 rounded-xl border border-slate-200 shadow-lg w-full md:w-64 flex items-center gap-4 transition-all duration-500 ${WORKFLOWS[activeWorkflow].trigger.ring}`}>
+                    <div className={`w-12 h-12 rounded-lg flex items-center justify-center border transition-colors duration-500 ${WORKFLOWS[activeWorkflow].trigger.color}`}>
+                      {React.createElement(WORKFLOWS[activeWorkflow].trigger.icon, { className: "w-6 h-6" })}
+                    </div>
+                    <div>
+                      <div className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Trigger</div>
+                      <div className="font-bold text-slate-900 transition-all duration-300">{WORKFLOWS[activeWorkflow].trigger.label}</div>
+                    </div>
+                  </div>
+
+                  {/* Connector Line */}
+                  <div className="hidden md:block w-12 h-0.5 bg-slate-200 relative overflow-hidden">
+                    <div className="absolute inset-0 bg-slate-400 -translate-x-full animate-[shimmer_1.5s_infinite]"></div>
+                  </div>
+                  <div className="md:hidden h-8 w-0.5 bg-slate-200 relative overflow-hidden">
+                    <div className="absolute inset-0 bg-slate-400 -translate-y-full animate-[shimmer_1.5s_infinite]"></div>
+                  </div>
+
+                  {/* Agent */}
+                  <div className={`bg-white p-4 rounded-xl border border-slate-200 shadow-lg w-full md:w-64 flex items-center gap-4 transition-all duration-500 ${WORKFLOWS[activeWorkflow].agent.ring}`}>
+                    <div className={`w-12 h-12 rounded-lg flex items-center justify-center border transition-colors duration-500 ${WORKFLOWS[activeWorkflow].agent.color}`}>
+                      {React.createElement(WORKFLOWS[activeWorkflow].agent.icon, { className: "w-6 h-6" })}
+                    </div>
+                    <div>
+                      <div className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Agent</div>
+                      <div className="font-bold text-slate-900 transition-all duration-300">{WORKFLOWS[activeWorkflow].agent.label}</div>
+                    </div>
+                  </div>
+
+                  {/* Connector Line */}
+                  <div className="hidden md:block w-12 h-0.5 bg-slate-200 relative overflow-hidden">
+                    <div className="absolute inset-0 bg-slate-400 -translate-x-full animate-[shimmer_1.5s_infinite]" style={{ animationDelay: '0.75s' }}></div>
+                  </div>
+                  <div className="md:hidden h-8 w-0.5 bg-slate-200 relative overflow-hidden">
+                    <div className="absolute inset-0 bg-slate-400 -translate-y-full animate-[shimmer_1.5s_infinite]" style={{ animationDelay: '0.75s' }}></div>
+                  </div>
+
+                  {/* Action */}
+                  <div className={`bg-white p-4 rounded-xl border border-slate-200 shadow-lg w-full md:w-64 flex items-center gap-4 transition-all duration-500 ${WORKFLOWS[activeWorkflow].action.ring}`}>
+                    <div className={`w-12 h-12 rounded-lg flex items-center justify-center border transition-colors duration-500 ${WORKFLOWS[activeWorkflow].action.color}`}>
+                      {React.createElement(WORKFLOWS[activeWorkflow].action.icon, { className: "w-6 h-6" })}
+                    </div>
+                    <div>
+                      <div className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Action</div>
+                      <div className="font-bold text-slate-900 transition-all duration-300">{WORKFLOWS[activeWorkflow].action.label}</div>
+                    </div>
+                  </div>
+
+                </div>
+
+                {/* Background Grid for Workflow Area */}
+                <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:16px_16px]"></div>
               </div>
             </div>
 
-            <div className="lg:col-span-5 relative mt-8 lg:mt-0">
-              <div className="bg-slate-50 rounded-2xl md:rounded-3xl p-4 md:p-8 border border-slate-200 shadow-2xl relative overflow-hidden group">
-                <div className="flex items-center gap-3 mb-3 md:mb-6 border-b border-slate-200 pb-3 md:pb-5">
-                  <div className="flex gap-1.5">
-                    <div className="w-2 h-2 md:w-3 md:h-3 rounded-full bg-slate-300"></div>
-                    <div className="w-2 h-2 md:w-3 md:h-3 rounded-full bg-slate-300"></div>
-                    <div className="w-2 h-2 md:w-3 md:h-3 rounded-full bg-slate-300"></div>
-                  </div>
-                  <div className="text-[8px] md:text-[10px] font-black uppercase tracking-widest text-slate-400 ml-4">lead_prospecting_agent.py</div>
-                </div>
-                <div className="font-mono text-xs md:text-sm space-y-2 md:space-y-3 text-slate-600">
-                  <p><span className="text-blue-600">from</span> mohd_ismail <span className="text-blue-600">import</span> Automation</p>
-                  <p><span className="text-emerald-600">ai</span> = Automation(agent=<span className="text-amber-600">'gpt-4o'</span>)</p>
-                  <p><br /></p>
-                  <p><span className="text-slate-400"># Start autonomous research loop</span></p>
-                  <p><span className="text-blue-600">for</span> lead <span className="text-blue-600">in</span> company_db:</p>
-                  <p className="pl-4">intel = ai.research(lead)</p>
-                  <p className="pl-4">ai.send_outreach(intel)</p>
-                  <p><br /></p>
-                  <p className="text-emerald-500 font-bold flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                    Ready to scale.
-                  </p>
-                </div>
-
-                {/* Floating Metric Card */}
-                <div className="absolute -bottom-1 -right-1 md:-bottom-2 md:-right-2 bg-white p-3 md:p-6 rounded-xl md:rounded-2xl border border-slate-100 shadow-2xl animate-float" style={{ animationDelay: '1.5s' }}>
-                  <div className="flex items-center gap-2 md:gap-4">
-                    <div className="w-8 h-8 md:w-12 md:h-12 rounded-xl md:rounded-2xl bg-emerald-50 flex items-center justify-center">
-                      <CheckCircle2 className="text-emerald-600 w-4 h-4 md:w-7 md:h-7" />
-                    </div>
-                    <div>
-                      <p className="text-xl md:text-3xl font-black text-slate-900 leading-none">0%</p>
-                      <p className="text-[8px] md:text-[10px] text-slate-400 uppercase tracking-[0.2em] font-black mt-1">Manual Data Entry</p>
-                    </div>
-                  </div>
-                </div>
+            {/* Floating Elements */}
+            <div className="absolute -left-4 top-1/2 -translate-y-1/2 hidden lg:block">
+              <div className="bg-white p-3 rounded-lg shadow-xl border border-slate-100 animate-float" style={{ animationDelay: '0s' }}>
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" className="w-8 h-8" alt="Python" />
+              </div>
+            </div>
+            <div className="absolute -right-4 top-1/3 hidden lg:block">
+              <div className="bg-white p-3 rounded-lg shadow-xl border border-slate-100 animate-float" style={{ animationDelay: '1s' }}>
+                <img src="https://static.cdnlogo.com/logos/l/8/langchain_800.png" className="w-8 h-8" alt="LangChain" />
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Social Proof / Tech Stack */}
-      <section className="py-10 md:py-16 border-y border-slate-100 bg-white">
-        <div className="max-w-7xl mx-auto px-4 overflow-hidden">
-          <p className="text-center text-[8px] md:text-[10px] font-black text-slate-400 uppercase tracking-[0.3em] mb-8 md:mb-12">Expertise in leading AI ecosystems</p>
-          <div className="flex flex-wrap justify-center items-center gap-6 md:gap-10 lg:gap-20 opacity-50 hover:opacity-100 transition-opacity">
+      {/* Integrations Strip */}
+      <section className="py-10 border-y border-slate-100 bg-slate-50/50">
+        <div className="max-w-7xl mx-auto px-4 text-center">
+          <p className="text-sm font-semibold text-slate-500 mb-8">Powering workflows with modern AI infrastructure</p>
+          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-70 grayscale hover:grayscale-0 transition-all duration-500">
             {TECH_STACK.map(tech => (
-              <div key={tech.name} className="flex items-center gap-2 md:gap-3">
-                <img src={tech.icon} alt={tech.name} className="w-5 h-5 md:w-7 md:h-7 filter grayscale" />
-                <span className="font-bold text-slate-600 text-xs md:text-base">{tech.name}</span>
+              <div key={tech.name} className="flex items-center gap-2 group cursor-default">
+                <img src={tech.icon} alt={tech.name} className="w-6 h-6 md:w-8 md:h-8 object-contain group-hover:scale-110 transition-transform" />
+                <span className="font-bold text-slate-700 text-sm md:text-lg hidden md:block">{tech.name}</span>
               </div>
             ))}
           </div>
@@ -96,7 +172,9 @@ const App: React.FC = () => {
       <section id="services" className="py-16 md:py-24 lg:py-32 bg-white">
         <div className="max-w-7xl mx-auto px-4">
           <div className="mb-12 md:mb-20 text-center max-w-3xl mx-auto">
-            <h2 className="text-3xl md:text-4xl lg:text-6xl font-[900] text-slate-900 mb-4 md:mb-6 tracking-tighter italic">Engineered <span className="text-blue-600">Intelligence.</span></h2>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-[900] text-slate-900 mb-4 md:mb-6 tracking-tighter">
+              Enterprise-Grade <span className="text-blue-600">Solutions</span>
+            </h2>
             <p className="text-base md:text-lg text-slate-500 font-medium">I don't just write code; I architect systems that transform your operational efficiency from the ground up.</p>
           </div>
 
@@ -128,7 +206,9 @@ const App: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start lg:items-center">
             <div>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-slate-900 mb-6 md:mb-8 lg:mb-10 tracking-tighter">My <span className="text-blue-600">Execution</span> Framework</h2>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-slate-900 mb-6 md:mb-8 lg:mb-10 tracking-tighter">
+                How it <span className="text-blue-600">Works</span>
+              </h2>
               <div className="space-y-6 md:space-y-8 lg:space-y-12">
                 {PROCESS_STEPS.map((step, idx) => (
                   <div key={idx} className="flex gap-4 md:gap-6 lg:gap-8 group">
@@ -183,9 +263,9 @@ const App: React.FC = () => {
                 I help companies scale without increasing headcount. Ready for a 15-minute discovery call to map your ROI?
               </p>
               <div className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center">
-                <button className="px-6 md:px-12 py-4 md:py-6 bg-blue-600 hover:bg-blue-700 text-white rounded-lg md:rounded-2xl lg:rounded-[2rem] font-black text-sm md:text-lg lg:text-xl shadow-2xl shadow-blue-600/40 transition-all hover:scale-105 active:scale-95">
+                <a href="https://calendly.com/hello-mohdismail/30min" target="_blank" rel="noopener noreferrer" className="px-6 md:px-12 py-4 md:py-6 bg-blue-600 hover:bg-blue-700 text-white rounded-lg md:rounded-2xl lg:rounded-[2rem] font-black text-sm md:text-lg lg:text-xl shadow-2xl shadow-blue-600/40 transition-all hover:scale-105 active:scale-95 inline-block">
                   Book Discovery Call
-                </button>
+                </a>
                 <div className="flex items-center justify-center gap-3 md:gap-4 text-white px-6 md:px-8 py-4 md:py-6 bg-white/5 backdrop-blur-sm rounded-lg md:rounded-2xl lg:rounded-[2rem] border border-white/10 group cursor-pointer hover:bg-white/10 transition-colors">
                   <Mail className="w-5 h-5 md:w-6 md:h-6 text-blue-400" />
                   <span className="font-bold text-sm md:text-lg">hi@mohdismail.com</span>
