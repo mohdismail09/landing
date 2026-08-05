@@ -1,65 +1,66 @@
 import React from 'react';
-import { Bot, Cpu, Database, Globe, Layers, Zap, Code, Terminal, BrainCircuit, Rocket } from 'lucide-react';
-import { NavItem, Service, TechStackItem } from './types';
+import { ArrowRightLeft, BarChart3, CheckCircle2, FileCheck2, ReceiptText, Route, UserRoundPlus } from 'lucide-react';
+import { NavItem } from './types';
 
 export const NAV_ITEMS: NavItem[] = [
-  { label: 'Approach', href: '#approach' },
-  { label: 'Solutions', href: '#services' },
-
-  { label: 'Connect', href: '#contact' },
+  { label: 'Workflows', href: '#services' },
+  { label: 'Pricing', href: '#pricing' },
+  { label: 'Process', href: '#approach' },
 ];
 
-export const SERVICES: Service[] = [
+export const WORK_EXAMPLES = [
   {
-    title: 'Autonomous AI Agents',
-    description: 'I design digital workers that handle multi-step workflows—from lead research to automated customer support using CrewAI.',
-    icon: <Bot className="w-6 h-6 text-blue-600" />,
-    tags: ['CrewAI', 'LangGraph', 'Agentic Workflows']
+    title: 'Client onboarding',
+    description: 'Turn an approved intake into the right project, folders, tasks, CRM records and team notifications.',
+    icon: <UserRoundPlus className="w-6 h-6 text-blue-600" />,
   },
   {
-    title: 'Enterprise RAG Systems',
-    description: 'I turn your messy company data into a high-performance brain. Instant, accurate answers for your team or customers.',
-    icon: <Database className="w-6 h-6 text-emerald-600" />,
-    tags: ['Vector DBs', 'Semantic Search', 'Retrieval']
+    title: 'Reporting preparation',
+    description: 'Collect data, flag missing inputs and prepare reports for a person to review before they are sent.',
+    icon: <BarChart3 className="w-6 h-6 text-blue-600" />,
   },
   {
-    title: 'Process Automation',
-    description: 'Replacing repetitive tasks with bulletproof Python scripts. I integrate your entire stack to work while you sleep.',
-    icon: <Zap className="w-6 h-6 text-blue-500" />,
-    tags: ['Python', 'API Integration', 'Efficiency']
+    title: 'Lead routing',
+    description: 'Validate new enquiries, assign the right owner and create the next follow-up without manual sorting.',
+    icon: <Route className="w-6 h-6 text-blue-600" />,
   },
   {
-    title: 'Custom LLM Pipelines',
-    description: 'Whether it is fine-tuning Llama 3 or optimizing Gemini prompts, I build the logic that makes AI actually useful.',
-    icon: <BrainCircuit className="w-6 h-6 text-indigo-600" />,
-    tags: ['Fine-tuning', 'Prompt Ops', 'Open Source']
+    title: 'Invoicing and handoffs',
+    description: 'Move approved work between delivery and finance without repeatedly copying the same details.',
+    icon: <ReceiptText className="w-6 h-6 text-blue-600" />,
   },
-  {
-    title: 'AI Dashboards',
-    description: 'I build the interface for your AI operations. Beautiful, fast, and secure internal tools to manage your automation.',
-    icon: <Layers className="w-6 h-6 text-slate-700" />,
-    tags: ['Next.js', 'FastAPI', 'UI/UX']
-  },
-  {
-    title: 'Growth Engineering',
-    description: 'AI-driven prospecting and personalization. I help your sales team scale without increasing headcount.',
-    icon: <Rocket className="w-6 h-6 text-rose-500" />,
-    tags: ['Lead Gen', 'Personalization', 'Scale']
-  }
 ];
 
-export const TECH_STACK: TechStackItem[] = [
-  { name: 'Python', category: 'Backend', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg' },
-  { name: 'LangChain', category: 'LLM Framework', icon: 'https://static.cdnlogo.com/logos/l/8/langchain_800.png' },
-  { name: 'Google Gemini', category: 'Models', icon: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Google_Gemini_logo.svg/1024px-Google_Gemini_logo.svg.png' },
-  { name: 'FastAPI', category: 'Backend', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg' },
-  { name: 'Pinecone', category: 'Vector DB', icon: 'https://www.pinecone.io/favicon.ico' },
-  { name: 'Docker', category: 'DevOps', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg' },
+export const TECH_STACK = [
+  { name: 'Python', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg' },
+  { name: 'n8n', icon: 'https://cdn.simpleicons.org/n8n/EA4B71' },
+  { name: 'FastAPI', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg' },
+  { name: 'Docker', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg' },
+  { name: 'Google Cloud', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg' },
 ];
 
 export const PROCESS_STEPS = [
-  { title: 'The Audit', description: 'I deep-dive into your operations to find every bottleneck costing you time.', icon: <Terminal className="w-5 h-5" /> },
-  { title: 'The Blueprint', description: 'I architect a custom AI solution that fits perfectly into your existing stack.', icon: <Code className="w-5 h-5" /> },
-  { title: 'The Build', description: 'I develop, test, and refine your autonomous agents and pipelines.', icon: <Cpu className="w-5 h-5" /> },
-  { title: 'The Scale', description: 'Deployment is just the start. I monitor and iterate for maximum ROI.', icon: <Globe className="w-5 h-5" /> },
+  {
+    title: 'Scope',
+    description: 'We choose one repetitive workflow, its success criteria and the systems it needs to connect.',
+    icon: <FileCheck2 className="w-5 h-5" />,
+  },
+  {
+    title: 'Build and test',
+    description: 'I build it in a controlled environment, including validation, retries and failure alerts.',
+    icon: <CheckCircle2 className="w-5 h-5" />,
+  },
+  {
+    title: 'Handover',
+    description: 'Your team gets a working system, clear documentation and a recorded walkthrough.',
+    icon: <ArrowRightLeft className="w-5 h-5" />,
+  },
+];
+
+export const PILOT_INCLUDES = [
+  'One clearly defined workflow',
+  'Up to three primary integrations',
+  'Testing, error handling and monitoring',
+  'Documentation and handover',
+  '30 days of defect support',
 ];
