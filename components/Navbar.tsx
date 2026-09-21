@@ -1,72 +1,30 @@
 import React, { useEffect, useState } from 'react';
-import { NAV_ITEMS } from '../constants';
-import { Menu, X, Terminal } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 
-const Navbar: React.FC = () => {
-  const [isOpen, setIsOpen] = useState(false);
-
+const Navbar: React.FC<{ industry?: string }> = ({ industry }) => {
+  const [open, setOpen] = useState(false);
   useEffect(() => {
-    if (!isOpen) return;
-    const closeOnEscape = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') setIsOpen(false);
-    };
-    document.addEventListener('keydown', closeOnEscape);
-    return () => document.removeEventListener('keydown', closeOnEscape);
-  }, [isOpen]);
+    const close = (event: KeyboardEvent) => event.key === 'Escape' && setOpen(false);
+    document.addEventListener('keydown', close);
+    return () => document.removeEventListener('keydown', close);
+  }, []);
+
+  const links = industry ? [{ label: 'The problem', href: '#problem' }, { label: 'Output', href: '#output' }, { label: 'Pilot', href: '#pilot' }] : [];
 
   return (
-    <nav aria-label="Primary" className="fixed left-0 right-0 top-0 z-50 border-b border-slate-100 bg-white/90 py-3 backdrop-blur-md">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center">
-          <a href="/" className="group flex items-center gap-2" aria-label="Mohd Ismail home">
-            <div className="w-7 h-7 md:w-8 md:h-8 bg-blue-600 rounded-lg flex items-center justify-center transition-transform group-hover:rotate-6">
-              <Terminal className="text-white w-4 h-4 md:w-5 md:h-5" />
-            </div>
-            <span className="text-base md:text-lg font-extrabold tracking-tighter text-slate-900">MOHD<span className="text-blue-600">ISMAIL</span></span>
-          </a>
-
-          {/* Desktop Nav */}
-          <div className="hidden items-center gap-6 lg:flex xl:gap-8">
-            {NAV_ITEMS.map((item) => (
-              <a key={item.label} href={item.href} className="rounded-md text-sm font-semibold text-slate-600 transition-colors hover:text-blue-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2">
-                {item.label}
-              </a>
-            ))}
-            <a href="#contact" className="whitespace-nowrap rounded-full bg-slate-900 px-6 py-2.5 text-sm font-bold text-white shadow-lg shadow-slate-900/10 transition hover:bg-slate-800 active:scale-[0.98]">
-              Discuss a workflow
-            </a>
-          </div>
-
-          {/* Mobile Toggle */}
-          <div className="lg:hidden">
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="rounded-lg p-2 text-slate-600 transition hover:bg-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-              aria-label={isOpen ? 'Close navigation' : 'Open navigation'}
-              aria-expanded={isOpen}
-              aria-controls="mobile-navigation"
-            >
-              {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-            </button>
-          </div>
+    <nav aria-label="Primary" className="fixed inset-x-0 top-0 z-50 border-b border-slate-200/80 bg-white/90 backdrop-blur-xl dark:border-slate-800 dark:bg-slate-950/90">
+      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+        <a href="/" className="flex min-w-0 items-center gap-3" aria-label="Mohd Ismail home">
+          <span className="font-black tracking-tight text-slate-950 dark:text-white">MOHD<span className="text-blue-700 dark:text-blue-400">ISMAIL</span></span>
+          {industry && <><span className="hidden h-4 w-px bg-slate-300 sm:block dark:bg-slate-700" /><span className="hidden truncate text-sm font-semibold text-slate-500 sm:block dark:text-slate-400">{industry}</span></>}
+        </a>
+        <div className="hidden items-center gap-6 md:flex">
+          {links.map((link) => <a key={link.href} href={link.href} className="text-sm font-bold text-slate-600 transition hover:text-blue-700 dark:text-slate-300 dark:hover:text-blue-400">{link.label}</a>)}
+          {industry && <a href="#contact" className="whitespace-nowrap rounded-xl bg-blue-700 px-5 py-2.5 text-sm font-bold text-white transition hover:bg-blue-800 active:translate-y-px">Book a walkthrough</a>}
         </div>
+        {industry && <button type="button" aria-expanded={open} aria-controls="mobile-nav" aria-label={open ? 'Close navigation' : 'Open navigation'} onClick={() => setOpen(!open)} className="rounded-lg p-2 text-slate-700 md:hidden dark:text-slate-200">{open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}</button>}
       </div>
-
-      {/* Mobile Menu */}
-      {isOpen && (
-        <div id="mobile-navigation" className="absolute left-0 right-0 top-full border-b border-slate-100 bg-white p-4 shadow-xl lg:hidden">
-          <div className="flex flex-col space-y-4">
-            {NAV_ITEMS.map((item) => (
-              <a key={item.label} href={item.href} className="rounded-md text-base font-bold text-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2" onClick={() => setIsOpen(false)}>
-                {item.label}
-              </a>
-            ))}
-            <a href="#contact" className="w-full rounded-lg bg-slate-900 py-3 text-center font-bold text-white" onClick={() => setIsOpen(false)}>
-              Discuss a workflow
-            </a>
-          </div>
-        </div>
-      )}
+      {open && <div id="mobile-nav" className="border-t border-slate-200 bg-white p-4 md:hidden dark:border-slate-800 dark:bg-slate-950">{links.map((link) => <a key={link.href} href={link.href} onClick={() => setOpen(false)} className="block rounded-lg px-3 py-3 font-bold text-slate-800 dark:text-slate-100">{link.label}</a>)}<a href="#contact" onClick={() => setOpen(false)} className="mt-2 block rounded-xl bg-blue-700 px-4 py-3 text-center font-bold text-white">Book a walkthrough</a></div>}
     </nav>
   );
 };

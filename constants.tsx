@@ -47,7 +47,7 @@ export const PROCESS_STEPS = [
   },
   {
     title: 'Build and test',
-    description: 'I build it in a controlled environment, including validation, retries and failure alerts.',
+    description: 'We build it in a controlled environment, including validation, retries and failure alerts.',
     icon: <CheckCircle2 className="w-5 h-5" />,
   },
   {
