@@ -14,7 +14,7 @@ import {
 } from 'lucide-react';
 import Navbar from './components/Navbar';
 
-const CALENDLY_URL = 'https://calendly.com/hello-mohdismail/30min';
+const CALENDLY_URL = 'https://calendly.com/ismail-mohdismail/30min';
 
 type Offer = {
   slug: string;
