@@ -1,49 +1,711 @@
-<!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style><title>checkline</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="checkline keys your customers' emailed, PDF and spreadsheet orders into your ERP overnight. AI matches every line to your catalog, our team checks anything uncertain, and you approve by morning. Flat monthly fee.">
+<meta property="og:title" content="checkline: your customers' orders, keyed into your ERP by morning">
+<meta property="og:description" content="Overnight order entry for electrical, plumbing, HVAC and industrial distributors. Customers order as usual. You approve clean orders in your ERP by 8 am.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@700&family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@500;600;700&family=JetBrains+Mono:wght@500&display=swap"></head><body>
+<style>
+/* Layout: minimal monochrome SaaS — black announcement bar, centered hero, scrolling name strip, numbered product modules with mockups. */
+:root{
+  --bg:#ffffff; --bg-2:#f5f7ff; --bg-3:#e9eeff; --ink:#0b1533; --ink-2:#4f5875; --ink-3:#8790a8; --line:#e3e8f5;
+  --btn:#2f5bff; --btn-ink:#ffffff; --btn-hover:#1f46e0;
+  --blue:#2f5bff; --blue-soft:#e9eeff;
+  --ok:#14804a; --ok-soft:#e6f4ec; --warn:#b45309; --warn-soft:#fdf1e2; --bad:#c2410c;
+  --card:#ffffff; --shadow:0 1px 2px rgba(10,10,11,.05),0 8px 24px -10px rgba(10,10,11,.12);
+  --paper:#fbfaf6; --paper-ink:#2a2a2a; --pen:#1d3fae;
+  --f-display:"Inter Tight","Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-body:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+  --r:12px; --max:1200px;
+}
+:root,:root[data-theme="dark"]{color-scheme:light}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mohd Ismail | Industrial Operations Automation</title>
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-    <meta name="description"
-        content="A founder-led automation team building small-scope pilots for compressor service companies, pump repair shops and industrial fastener distributors.">
-    <meta property="og:title" content="Mohd Ismail | Industrial Operations Automation">
-    <meta property="og:description"
-        content="A founder-led team building small-scope automation pilots for industrial service and distribution companies.">
-    <meta property="og:url" content="https://mohdismail.com/">
-    <link rel="canonical" href="https://mohdismail.com/">
-    <meta property="og:type" content="website">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
-        rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Manrope', sans-serif;
-            background-color: #ffffff;
-            color: #0f172a;
-        }
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:17.5px;line-height:1.6;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--bg)}
+a{color:inherit}
+h1,h2,h3{font-family:var(--f-display);margin:0;text-wrap:balance;letter-spacing:-.03em;font-weight:600}
+h1{font-size:clamp(2.4rem,5.6vw,4.4rem);line-height:1.04}
+h2{font-size:clamp(1.9rem,3.8vw,3rem);line-height:1.08}
+h3{font-size:1.18rem;line-height:1.3;letter-spacing:-.015em}
+p{margin:0}
+:focus-visible{outline:2px solid var(--blue);outline-offset:3px;border-radius:6px}
 
-        @media (prefers-reduced-motion: reduce) {
+.wrap{max-width:var(--max);margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+section{padding-block:clamp(64px,9vw,120px)}
+.alt{background:var(--bg-2)}
+.head{display:grid;gap:16px;max-width:760px;margin:0 auto 56px;text-align:center;justify-items:center}
+.head.left{text-align:left;justify-items:start;margin-left:0}
+.head p{color:var(--ink-2);font-size:1.1rem;max-width:620px}
+.kicker{font-size:.85rem;font-weight:500;color:var(--ink-2);display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--card);padding:5px 12px;border-radius:999px}
+.kicker b{font-weight:600;color:var(--ink)}
 
-            *,
-            *::before,
-            *::after {
-                scroll-behavior: auto !important;
-                transition-duration: 0.01ms !important;
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-            }
-        }
-    </style>
-</head>
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font:500 .98rem/1 var(--f-body);padding:14px 22px;border-radius:8px;text-decoration:none;border:1px solid transparent;cursor:pointer;transition:background .15s,border-color .15s;white-space:nowrap}
+.btn-dark{background:var(--btn);color:var(--btn-ink)}
+.btn-dark:hover{background:var(--btn-hover)}
+.btn-line{background:var(--card);color:var(--ink);border-color:var(--line)}
+.btn-line:hover{border-color:var(--ink-3)}
+.btn svg{width:16px;height:16px}
 
-<body>
-    <div id="root"></div>
-    <script type="module" src="/index.tsx"></script>
-</body>
+/* announcement + header */
+.announce{background:var(--btn);color:#e6ecff;font-size:.88rem;text-align:center;padding-block:10px}
+.announce a{color:#fff;font-weight:600;text-decoration:underline;text-underline-offset:3px}
+.site-head{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.site-head .wrap{display:flex;align-items:center;gap:28px;height:66px}
+.logo{display:flex;align-items:center;gap:8px;font-family:"DM Sans",var(--f-display);font-weight:700;font-size:1.28rem;letter-spacing:-.045em;text-decoration:none;color:#202328}
+.logo-mark{width:26px;height:26px;display:grid;place-items:center;flex:none}
+.logo-mark svg{width:26px;height:26px;stroke:none}
+.kicker b{color:var(--btn)}
+.hero{background:radial-gradient(900px 460px at 50% 0%,var(--bg-3),transparent 70%),var(--bg)}
+.hero h1{color:var(--ink)}
+.nav{display:flex;gap:28px}
+.nav a{text-decoration:none;color:var(--ink-2);font-size:.94rem;font-weight:500}
+.nav a:hover{color:var(--ink)}
+.head-cta{margin-left:auto;display:flex;gap:10px}
+.head-cta .btn{padding:10px 16px;font-size:.9rem}
+.short{display:none}
+@media (max-width:960px){.nav{display:none}}
+@media (max-width:560px){.head-cta .btn-line{display:none}.long{display:none}.short{display:inline}}
 
-</html>
+/* hero */
+.hero{padding-block:clamp(64px,9vw,112px) 0;text-align:center}
+.hero .wrap{display:grid;gap:26px;justify-items:center}
+.hero h1{max-width:960px}
+.hero .sub{max-width:680px;font-size:clamp(1.08rem,1.6vw,1.24rem);color:var(--ink-2)}
+.cta-row{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+.note{font-size:.88rem;color:var(--ink-3)}
+.marquee{margin-top:40px;width:100%;overflow:hidden;border-block:1px solid var(--line);padding-block:22px;mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+.marquee-cap{font-size:.85rem;color:var(--ink-3);margin-top:56px}
+.track{display:flex;gap:64px;width:max-content;animation:slide 30s linear infinite}
+.track span{font-family:var(--f-display);font-weight:600;font-size:1.3rem;color:var(--ink-3);letter-spacing:-.02em;white-space:nowrap}
+@keyframes slide{to{transform:translateX(-50%)}}
+
+/* hero product shot */
+.shot{width:100%;max-width:1100px;margin:56px auto 0;background:var(--bg-2);border:1px solid var(--line);border-radius:18px;padding:clamp(10px,2vw,18px);text-align:left}
+.win{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:var(--shadow)}
+.win-bar{display:flex;align-items:center;gap:7px;padding:11px 14px;border-bottom:1px solid var(--line)}
+.win-bar i{width:10px;height:10px;border-radius:50%;background:var(--bg-3)}
+.win-bar span{margin-left:8px;font-size:.8rem;color:var(--ink-3)}
+.win-bar .tag{margin-left:auto}
+.tag{font-family:var(--f-mono);font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;padding:4px 8px;border-radius:5px;background:var(--bg-3);color:var(--ink-2);font-weight:500}
+.win-body{display:grid;grid-template-columns:280px 1fr;min-height:330px}
+.inbox{border-right:1px solid var(--line);padding:12px;display:grid;gap:6px;align-content:start}
+.sm-h{font-size:.74rem;font-weight:600;color:var(--ink-3);text-transform:uppercase;letter-spacing:.06em;margin:4px 6px 6px}
+.mail{display:grid;gap:4px;padding:10px 12px;border-radius:8px;font-size:.86rem;line-height:1.35;color:var(--ink-2)}
+.mail b{color:var(--ink);font-weight:600}
+.mail.on{background:var(--bg-2)}
+.pill{display:inline-flex;align-items:center;gap:6px;width:max-content;font:500 .74rem/1 var(--f-body);padding:5px 9px;border-radius:999px;white-space:nowrap}
+.pill::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+.p-ok{background:var(--ok-soft);color:var(--ok)}
+.p-rev{background:var(--warn-soft);color:var(--warn)}
+.p-blue{background:var(--blue-soft);color:var(--blue)}
+.lines{padding:14px 18px;min-width:0;display:grid;gap:12px;align-content:start}
+.lines-top{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px}
+.lines-top strong{font-family:var(--f-display);font-weight:600;font-size:1.02rem}
+.lines-top span.m{font-size:.85rem;color:var(--ink-3)}
+.scroll{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:.86rem;font-variant-numeric:tabular-nums}
+th{font-size:.74rem;font-weight:600;color:var(--ink-3);text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);white-space:nowrap}
+td{padding:10px;border-bottom:1px solid var(--line);vertical-align:middle}
+.pn{font-family:var(--f-mono);font-size:.8rem}
+.r{text-align:right}
+.approve{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;padding:12px 14px;border-radius:8px;background:var(--bg-2);font-size:.88rem;color:var(--ink-2)}
+.fake{background:var(--btn);color:var(--btn-ink);font-weight:500;font-size:.84rem;padding:8px 14px;border-radius:7px}
+@media (max-width:780px){.win-body{grid-template-columns:1fr}.inbox{border-right:0;border-bottom:1px solid var(--line)}}
+
+/* problem grid */
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.cell{background:var(--card);padding:30px 26px;display:grid;gap:12px;align-content:start;min-width:0}
+.cell p{color:var(--ink-2);font-size:.98rem}
+.ico{width:40px;height:40px;border-radius:10px;border:1px solid var(--line);background:var(--bg-2);display:grid;place-items:center}
+.ico svg{width:20px;height:20px;stroke:var(--ink);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+@media (max-width:980px){.grid4{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:560px){.grid4{grid-template-columns:1fr}}
+
+/* how */
+.video{max-width:min(900px,100%);margin:0 auto 64px;aspect-ratio:16/9;border-radius:16px;border:1.5px dashed var(--ink-3);background:var(--bg-3);display:grid;place-items:center;text-align:center;padding:20px}
+.video div{display:grid;gap:10px;justify-items:center}
+.video video{width:100%;height:100%;object-fit:contain;border-radius:12px;background:#080d1a}
+.play{width:62px;height:62px;border-radius:50%;background:var(--btn);display:grid;place-items:center}
+.play svg{width:22px;height:22px;fill:var(--btn-ink);margin-left:3px}
+.video small{font-size:.8rem;color:var(--ink-3)}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;list-style:none;margin:0;padding:0}
+.steps li{display:grid;gap:12px;align-content:start;border-top:2px solid var(--btn);padding-top:20px}
+.num{font-family:var(--f-mono);font-size:.82rem;color:var(--btn)}
+.ico{background:var(--bg-3)!important;border-color:transparent!important}
+.ico svg{stroke:var(--btn)!important}
+.steps p{color:var(--ink-2);font-size:.98rem}
+@media (max-width:980px){.steps{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:560px){.steps{grid-template-columns:1fr}}
+
+/* numbered modules */
+.mod{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(28px,5vw,72px);align-items:center;padding-block:clamp(48px,6vw,80px);border-top:1px solid var(--line)}
+.mod:first-of-type{border-top:0;padding-top:0}
+.mod.flip .txt{order:2}
+.txt{display:grid;gap:16px;align-content:center}
+.txt .num{font-size:.9rem}
+.txt p{color:var(--ink-2)}
+.checks{list-style:none;padding:0;margin:0;display:grid;gap:10px}
+.checks li{display:flex;gap:10px;align-items:flex-start;color:var(--ink-2);font-size:1rem}
+.checks svg{width:18px;height:18px;stroke:var(--btn);flex:none;margin-top:4px}
+.frame{background:var(--bg-2);border:1px solid var(--line);border-radius:18px;padding:clamp(14px,2.4vw,24px);min-width:0;position:relative}
+@media (max-width:900px){.mod{grid-template-columns:1fr}.mod.flip .txt{order:0}}
+
+/* paper PO */
+.demo{display:grid;gap:14px}
+.paper{position:relative;background:var(--paper);color:var(--paper-ink);border-radius:6px;padding:20px 22px 26px;box-shadow:0 10px 26px -14px rgba(0,0,0,.35);font-family:"Courier New",Courier,monospace;font-size:.82rem;line-height:1.5;transform:rotate(-.8deg)}
+.paper .pt{display:flex;justify-content:space-between;gap:10px;border-bottom:2px solid var(--paper-ink);padding-bottom:6px;margin-bottom:8px;font-weight:700}
+.paper .meta{font-size:.74rem;color:#666;margin-bottom:8px}
+.paper ol{margin:0;padding-left:20px;display:grid;gap:3px}
+.paper .pen{color:var(--pen);font-style:italic;font-weight:700}
+.paper .circ{border:2px solid var(--pen);border-radius:50%;padding:0 4px}
+.paper .strike{text-decoration:line-through;text-decoration-color:var(--pen)}
+.paper .rush{position:absolute;right:14px;bottom:8px;transform:rotate(-5deg)}
+.lbl{position:absolute;top:-11px;left:16px;z-index:2}
+.lbl .tag{background:var(--btn);color:#fff}
+.down{justify-self:center;width:36px;height:36px;border-radius:50%;background:var(--btn);display:grid;place-items:center}
+.down svg{width:18px;height:18px;stroke:var(--btn-ink);fill:none;stroke-width:2.2}
+.result{position:relative}
+.result table{min-width:560px}
+.result .total td{font-weight:600;border-bottom:0}
+.desc{display:block;font-size:.78rem;color:var(--ink-3)}
+
+/* timeline */
+.tl-wrap{overflow-x:auto;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px 18px}
+.tl{min-width:600px;display:grid;grid-template-columns:96px repeat(8,1fr);row-gap:6px;font-variant-numeric:tabular-nums}
+.tl .h{font-family:var(--f-mono);font-size:.72rem;color:var(--ink-3);border-left:1px solid var(--line);padding-left:6px}
+.tl .who{font-size:.84rem;font-weight:600;display:flex;align-items:center}
+.bar{grid-column:2/-1;height:42px;border-radius:8px;display:flex;align-items:center;padding:0 12px;font-size:.84rem;font-weight:500;position:relative}
+.bar.us{background:var(--btn);color:#fff}
+.bar.in{background:var(--bg-3);color:var(--ink);border:1px solid var(--line)}
+.bar.in::after{content:"";position:absolute;inset:0;border-radius:8px;background:linear-gradient(90deg,transparent,var(--ok-soft) 20%,var(--ok-soft) 80%,transparent);opacity:.8;z-index:0}
+.bar.in span{position:relative;z-index:1}
+.gap{grid-column:1/-1;height:8px}
+.moments{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:14px}
+.mo{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px;display:grid;gap:4px}
+.mo b{font-family:var(--f-mono);font-size:.76rem;color:var(--ink-3);font-weight:500}
+.mo span{font-weight:600;font-size:.95rem}
+.mo p{color:var(--ink-2);font-size:.86rem}
+.fine{font-size:.8rem;color:var(--ink-3);margin-top:10px}
+@media (max-width:640px){.moments{grid-template-columns:1fr}}
+
+/* formats */
+.io{display:grid;gap:12px}
+.io-box{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;display:grid;gap:10px}
+.io-row{display:flex;gap:12px;align-items:center;font-size:.92rem;color:var(--ink-2)}
+.io-row b{color:var(--ink);font-weight:600}
+.fmt{flex:none;font-family:var(--f-mono);font-size:.68rem;width:50px;text-align:center;padding:6px 0;border-radius:6px;background:var(--bg-2);border:1px solid var(--line);color:var(--ink)}
+.erps{display:flex;flex-wrap:wrap;gap:8px}
+.erps span{font-weight:500;font-size:.88rem;padding:7px 12px;border-radius:999px;border:1px solid var(--line);background:var(--bg-2)}
+
+/* compare */
+.cmp{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.col{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:30px 26px;display:grid;gap:18px;align-content:start}
+.col.us{background:var(--btn);color:var(--btn-ink);border-color:var(--btn)}
+.col.us h3{color:var(--btn-ink)}
+.col .k{font-size:.82rem;color:var(--ink-3);font-weight:500}
+.col.us .k{color:color-mix(in srgb,var(--btn-ink) 60%,transparent)}
+.col ul{list-style:none;padding:0;margin:0;display:grid;gap:12px}
+.col li{display:grid;grid-template-columns:20px 1fr;gap:10px;font-size:.98rem;color:var(--ink-2);line-height:1.45}
+.col.us li{color:color-mix(in srgb,var(--btn-ink) 85%,transparent)}
+.col li svg{width:18px;height:18px;margin-top:3px;stroke:var(--ink-3)}
+.col.us li svg{stroke:var(--btn-ink)}
+@media (max-width:900px){.cmp{grid-template-columns:1fr}}
+
+/* quote placeholder */
+.quote{border:1.5px dashed var(--ink-3);border-radius:18px;padding:clamp(28px,4vw,48px);display:grid;grid-template-columns:1.3fr 1fr;gap:32px;align-items:center;background:var(--card)}
+.quote .tag{justify-self:start}
+.quote blockquote{margin:0;font-family:var(--f-display);font-size:clamp(1.3rem,2.4vw,1.8rem);line-height:1.3;letter-spacing:-.02em;color:var(--ink-3)}
+.quote .side{display:grid;gap:12px;border-left:1px solid var(--line);padding-left:32px}
+.quote .side p{color:var(--ink-2);font-size:.95rem}
+.ghost{height:12px;border-radius:6px;background:var(--bg-3)}
+@media (max-width:820px){.quote{grid-template-columns:1fr}.quote .side{border-left:0;padding-left:0;border-top:1px solid var(--line);padding-top:20px}}
+
+/* pricing */
+.price{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:1040px;margin:0 auto}
+.pcard{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:clamp(26px,4vw,40px);display:grid;gap:18px;align-content:start}
+.pcard .big{font-family:var(--f-display);font-size:clamp(1.5rem,2.8vw,2.1rem);font-weight:600;letter-spacing:-.03em;line-height:1.15}
+.pcard p{color:var(--ink-2)}
+.path{list-style:none;margin:0;padding:0;display:grid}
+.path li{display:grid;grid-template-columns:34px 1fr;gap:14px;padding-bottom:22px;position:relative}
+.path li:not(:last-child)::before{content:"";position:absolute;left:16px;top:34px;bottom:0;width:1px;background:var(--line)}
+.dot{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--line);background:var(--bg-2);font-family:var(--f-mono);font-size:.78rem}
+.path b{display:block;font-weight:600}
+.path span{color:var(--ink-2);font-size:.95rem}
+@media (max-width:820px){.price{grid-template-columns:1fr}}
+
+/* security */
+.badges{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-bottom:40px}
+.badge{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--card);border-radius:999px;padding:8px 14px;font-size:.88rem;font-weight:500}
+.badge svg{width:16px;height:16px;stroke:var(--ok);fill:none;stroke-width:2.2}
+
+/* faq */
+.faq-wrap{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(28px,5vw,72px);align-items:start}
+.faq{border-top:1px solid var(--line)}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{cursor:pointer;list-style:none;padding:22px 0;font-weight:600;font-size:1.06rem;display:flex;justify-content:space-between;align-items:center;gap:20px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";flex:none;font-size:1.5rem;font-weight:300;line-height:1;color:var(--ink-2)}
+.faq details[open] summary::after{content:"−"}
+.faq details p{padding:0 0 22px;color:var(--ink-2);max-width:66ch}
+@media (max-width:860px){.faq-wrap{grid-template-columns:1fr}}
+
+/* form */
+.cta-box{background:var(--btn);color:var(--btn-ink);border-radius:22px;padding:clamp(28px,5vw,64px);display:grid;grid-template-columns:1fr 1.1fr;gap:clamp(28px,5vw,64px);align-items:start}
+.cta-box h2{color:var(--btn-ink)}
+.cta-box .lead{display:grid;gap:18px}
+.cta-box .lead p{color:color-mix(in srgb,var(--btn-ink) 72%,transparent)}
+.cta-box .checks li{color:color-mix(in srgb,var(--btn-ink) 85%,transparent)}
+.cta-box .checks svg{stroke:var(--btn-ink)}
+.addr{font-family:var(--f-mono);font-size:.9em;padding:2px 7px;border-radius:5px;background:color-mix(in srgb,var(--btn-ink) 14%,transparent);user-select:all}
+form{background:var(--bg);color:var(--ink);border-radius:14px;padding:clamp(20px,3vw,32px);display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.f{display:grid;gap:6px;min-width:0}
+.f.full{grid-column:1/-1}
+label{font-weight:500;font-size:.9rem}
+label .opt{color:var(--ink-3);font-weight:400}
+input,select,textarea{font:inherit;font-size:1rem;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:12px 13px;width:100%}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--btn);box-shadow:0 0 0 3px var(--bg-3)}
+textarea{min-height:100px;resize:vertical}
+form .btn{grid-column:1/-1;width:100%;padding:16px;font-size:1rem}
+.fnote{grid-column:1/-1;font-size:.84rem;color:var(--ink-3);text-align:center}
+.form-trap{position:absolute!important;left:-10000px!important;width:1px!important;height:1px!important;overflow:hidden!important}
+.privacy-note{grid-column:1/-1;font-size:.78rem;line-height:1.5;color:color-mix(in srgb,var(--btn-ink) 78%,transparent);margin-top:4px}.privacy-note a{color:var(--btn-ink)}
+.done{grid-column:1/-1;display:grid;gap:8px;text-align:center;padding:28px 8px;justify-items:center}
+.done p{color:var(--ink-2)}
+.bad{border-color:var(--bad)!important}
+@media (max-width:860px){.cta-box{grid-template-columns:1fr}}
+@media (max-width:520px){form{grid-template-columns:1fr}}
+
+/* footer */
+footer{border-top:1px solid var(--line);padding-block:56px 32px}
+.foot{display:grid;grid-template-columns:1.5fr repeat(3,1fr);gap:32px}
+.foot p{color:var(--ink-2);font-size:.95rem;max-width:300px}
+.foot h4{margin:0 0 12px;font-size:.85rem;font-weight:600}
+.foot ul{list-style:none;margin:0;padding:0;display:grid;gap:9px;font-size:.93rem;color:var(--ink-2)}
+.foot a{text-decoration:none;color:var(--ink-2)}
+.foot a:hover{color:var(--ink)}
+.ph{font-family:var(--f-mono);font-size:.85em;background:var(--bg-2);border:1px solid var(--line);padding:1px 6px;border-radius:5px}
+.legal{margin-top:40px;padding-top:22px;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;font-size:.85rem;color:var(--ink-3)}
+.legal nav{display:flex;gap:20px}
+.legal a{color:var(--ink-3);text-decoration:none}
+@media (max-width:860px){.foot{grid-template-columns:1fr 1fr}.foot>div:first-child{grid-column:1/-1}}
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M7 7l10 10M17 7L7 17" fill="none" stroke-width="2" stroke-linecap="round"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</defs></svg>
+
+<div class="announce"><div class="wrap">Free for supply houses: send us 20 real orders and see them keyed into your ERP. <a href="#test">Get your free test →</a></div></div>
+
+<header class="site-head">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="checkline home"><span class="logo-mark"><svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="15" fill="#146EF5"/><path d="M14 34 25.5 45 38 30h11" fill="none" stroke="#fff" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="52.5" cy="30" r="3.6" fill="#C25700"/></svg></span>checkline</a>
+    <nav class="nav" aria-label="Main">
+      <a href="#how">How it works</a><a href="#product">Product</a><a href="#pricing">Pricing</a><a href="#security">Security</a><a href="#faq">FAQ</a>
+    </nav>
+    <div class="head-cta">
+      <a class="btn btn-line" href="#how">See how it works</a>
+      <a class="btn btn-dark" href="#test"><span class="long">Free 20-order test</span><span class="short">Free test</span></a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- 1. HERO -->
+<section class="hero" aria-labelledby="hero-h">
+  <div class="wrap">
+    <span class="kicker"><b>New</b> Overnight order entry for supply houses</span>
+    <h1 id="hero-h">Your customers' orders, keyed into your ERP by morning.</h1>
+    <p class="sub">Customers keep sending POs by email, PDF or spreadsheet. We match every line to your catalog overnight, check anything unclear by hand, and leave the orders in your ERP for you to approve.</p>
+    <div class="cta-row">
+      <a class="btn btn-dark" href="#test">Get a free 20-order test <svg viewBox="0 0 24 24"><use href="#i-arrow"/></svg></a>
+      <a class="btn btn-line" href="#how">See how it works</a>
+    </div>
+    <p class="note">20 of your real orders · No cost · No commitment</p>
+  </div>
+
+  <div class="wrap">
+    <div class="shot" role="img" aria-label="Sample screen: tonight's customer orders on the left, a purchase order with every line matched to catalog part numbers on the right">
+      <div class="win">
+        <div class="win-bar"><i></i><i></i><i></i><span>checkline · Tonight's orders</span><span class="tag">Sample</span></div>
+        <div class="win-body">
+          <div class="inbox">
+            <div class="sm-h">Received after 6 pm</div>
+            <div class="mail on"><b>Ridgeway Mechanical</b>PO-4471.pdf · 6 lines<span class="pill p-ok">Ready to approve</span></div>
+            <div class="mail"><b>Delta Plumbing &amp; Heat</b>weekly_order.xlsx · 31 lines<span class="pill p-ok">Ready to approve</span></div>
+            <div class="mail"><b>Brightway Electric</b>"Need a price on these…"<span class="pill p-blue">Quote drafted</span></div>
+            <div class="mail"><b>Northfork Facilities</b>scan_0193.pdf · 12 lines<span class="pill p-rev">2 lines checked by reviewer</span></div>
+          </div>
+          <div class="lines">
+            <div class="lines-top"><strong>PO-4471 · Ridgeway Mechanical</strong><span class="pill p-ok">6 of 6 lines matched</span></div>
+            <div class="scroll">
+              <table style="min-width:520px">
+                <thead><tr><th>Customer wrote</th><th>Your part #</th><th class="r">Qty</th><th>Status</th></tr></thead>
+                <tbody>
+                  <tr><td>1/2 copper 90 ell</td><td class="pn">CPF-90E-050</td><td class="r">50</td><td><span class="pill p-ok">AI matched</span></td></tr>
+                  <tr><td>3/4 PEX-A red 100'</td><td class="pn">PXA-075-R100</td><td class="r">4</td><td><span class="pill p-rev">Reviewer checked</span></td></tr>
+                  <tr><td>THHN 12 blk 500</td><td class="pn">WTH-12S-BK500</td><td class="r">2</td><td><span class="pill p-ok">AI matched</span></td></tr>
+                  <tr><td>ball valve 1" FIP LF</td><td class="pn">BVL-100-FIP-LF</td><td class="r">6</td><td><span class="pill p-ok">AI matched</span></td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="approve"><span>Waiting in Prophet 21 as a draft order</span><span class="fake">Review &amp; approve</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="marquee-cap">Orders delivered in your ERP's own import format</p>
+  </div>
+  <div class="marquee" aria-label="Supported ERPs: Prophet 21, Eclipse, NetSuite, Acumatica, QuickBooks, any CSV import">
+    <div class="track" aria-hidden="true">
+      <span>Prophet 21</span><span>Eclipse</span><span>NetSuite</span><span>Acumatica</span><span>QuickBooks</span><span>Any CSV import</span>
+      <span>Prophet 21</span><span>Eclipse</span><span>NetSuite</span><span>Acumatica</span><span>QuickBooks</span><span>Any CSV import</span>
+    </div>
+  </div>
+</section>
+
+<!-- 2. PROBLEM -->
+<section aria-labelledby="prob-h">
+  <div class="wrap">
+    <div class="head">
+      <span class="kicker">The problem</span>
+      <h2 id="prob-h">Your counter staff are retyping orders that already exist.</h2>
+      <p>Every PO a customer emails gets keyed in again, line by line. It's slow, it's error-prone, and it gets worse when you're busiest.</p>
+    </div>
+    <div class="grid4">
+      <div class="cell"><div class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2.5M9 2h6"/></svg></div><h3>Hours lost to retyping</h3><p>A long PO can take half an hour to key in. That's time your people could spend with customers or chasing quotes.</p></div>
+      <div class="cell"><div class="ico"><svg viewBox="0 0 24 24"><path d="M12 3l9 16H3z"/><path d="M12 10v4M12 17h.01"/></svg></div><h3>Typos and wrong parts</h3><p>One wrong digit ships the wrong fitting. Then come the return, the re-delivery and the unhappy contractor.</p></div>
+      <div class="cell"><div class="ico"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.6-3.6 3.2-5.5 6.5-5.5s5.9 1.9 6.5 5.5M17 11l4 4M21 11l-4 4"/></svg></div><h3>Clerks are hard to keep</h3><p>Hiring and training an order clerk takes months. When they leave, you start over.</p></div>
+      <div class="cell"><div class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4M8 14h3M8 17h6"/></svg></div><h3>Busy season backs up</h3><p>When HVAC season hits or a big job starts, orders pile up. Customers wait, and some call a competitor.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. HOW IT WORKS -->
+<section class="alt" id="how" aria-labelledby="how-h">
+  <div class="wrap">
+    <div class="head">
+      <span class="kicker">How it works</span>
+      <h2 id="how-h">Four steps. Your customers only see the first one.</h2>
+      <p>No new portal, no new forms. We work from the orders you already receive.</p>
+    </div>
+    <div class="video" aria-label="Checkline explainer video">
+      <video controls playsinline preload="metadata" aria-label="Checkline explainer"><source src="assets/video/checkline%20explainer%20(1).mp4" type="video/mp4">Your browser does not support HTML video.</video>
+    </div>
+    <ol class="steps">
+      <li><span class="num">01</span><div class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></div><h3>Customers send orders as usual</h3><p>Email, PDF, scanned fax or spreadsheet. You forward them to us, or we read a shared inbox.</p></li>
+      <li><span class="num">02</span><div class="ico"><svg viewBox="0 0 24 24"><path d="M4 6h10M4 12h7M4 18h10"/><circle cx="17.5" cy="14.5" r="3.5"/><path d="M20 17l2 2"/></svg></div><h3>AI reads and matches every line</h3><p>Each line is matched to your catalog, using your part numbers, units and the customer's past orders.</p></li>
+      <li><span class="num">03</span><div class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c.8-4 4-6 8-6s7.2 2 8 6"/></svg></div><h3>Our reviewers check anything uncertain</h3><p>If the AI isn't sure, a trained person on our team decides. Lines we can't resolve are flagged for you.</p></li>
+      <li><span class="num">04</span><div class="ico"><svg viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M9 3v3h6V3M8.5 13l2.5 2.5 4.5-5"/></svg></div><h3>Orders wait in your ERP for approval</h3><p>Clean draft orders are in your system by morning. Nothing ships without your OK.</p></li>
+    </ol>
+  </div>
+</section>
+
+<!-- 4–6. PRODUCT MODULES -->
+<section id="product" aria-label="What checkline does">
+  <div class="wrap">
+
+    <!-- 01 Before / after -->
+    <div class="mod">
+      <div class="txt">
+        <span class="num">01 · Before and after</span>
+        <h2>From a messy PO to a clean order.</h2>
+        <p>Shorthand, missing part numbers, handwritten notes. This is what real orders look like, and it's what we're built for.</p>
+        <ul class="checks">
+          <li><svg viewBox="0 0 24 24"><use href="#i-check"/></svg>Every line matched to your own part numbers</li>
+          <li><svg viewBox="0 0 24 24"><use href="#i-check"/></svg>Quantities, units and prices filled in</li>
+          <li><svg viewBox="0 0 24 24"><use href="#i-check"/></svg>Vague lines checked against past orders by a person</li>
+        </ul>
+      </div>
+      <div class="frame demo">
+        <div class="paper" aria-label="Sample messy purchase order">
+          <span class="lbl"><span class="tag">Sample · Before</span></span>
+          <div class="pt"><span>RIDGEWAY MECHANICAL</span><span>PO# 4471</span></div>
+          <div class="meta">Ship to: Jobsite, 210 Oak St · Attn: Dave</div>
+          <ol>
+            <li>1/2 copper 90 ell — 50</li>
+            <li>3/4 PEX-A tubing <span class="circ">red</span> 100ft x4</li>
+            <li>THHN 12 blk 500 - 2 rolls</li>
+            <li>ball valve 1in FIP lead free (6)</li>
+            <li>same filters as last time 16x25x1 <span class="strike">MERV 11</span> <span class="pen">8!</span> — 2 cs</li>
+            <li>1/2" EMT conn set screw 100</li>
+          </ol>
+          <span class="pen rush">rush, need by Thurs</span>
+        </div>
+        <span class="down" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 5v14M6 13l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <div class="win result">
+          <span class="lbl"><span class="tag">Sample · After</span></span>
+          <div class="lines">
+            <div class="lines-top"><strong>Draft order · PO 4471</strong><span class="m">Need by Thursday (rush)</span></div>
+            <div class="scroll">
+              <table>
+                <thead><tr><th>Part #</th><th>Description</th><th class="r">Qty</th><th>UOM</th><th class="r">Price</th><th class="r">Ext.</th></tr></thead>
+                <tbody>
+                  <tr><td class="pn">CPF-90E-050</td><td>1/2 in copper 90° elbow C×C</td><td class="r">50</td><td>EA</td><td class="r">$1.42</td><td class="r">$71.00</td></tr>
+                  <tr><td class="pn">PXA-075-R100</td><td>3/4 in PEX-A tubing, red, 100 ft <span class="pill p-rev">Reviewer checked</span></td><td class="r">4</td><td>RL</td><td class="r">$58.90</td><td class="r">$235.60</td></tr>
+                  <tr><td class="pn">WTH-12S-BK500</td><td>12 AWG THHN solid, black, 500 ft</td><td class="r">2</td><td>RL</td><td class="r">$64.75</td><td class="r">$129.50</td></tr>
+                  <tr><td class="pn">BVL-100-FIP-LF</td><td>1 in lead-free brass ball valve, FIP</td><td class="r">6</td><td>EA</td><td class="r">$18.30</td><td class="r">$109.80</td></tr>
+                  <tr><td class="pn">FLT-16251-M8</td><td>16×25×1 pleated filter, MERV 8<span class="desc">2 cases of 12, per last order</span> <span class="pill p-rev">Reviewer checked</span></td><td class="r">24</td><td>EA</td><td class="r">$4.15</td><td class="r">$99.60</td></tr>
+                  <tr><td class="pn">EMT-CN-050-SS</td><td>1/2 in EMT connector, set screw</td><td class="r">100</td><td>EA</td><td class="r">$0.38</td><td class="r">$38.00</td></tr>
+                  <tr class="total"><td colspan="5" class="r">Order total</td><td class="r">$683.50</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 02 Overnight -->
+    <div class="mod flip">
+      <div class="txt">
+        <span class="num">02 · The overnight advantage</span>
+        <h2>Our workday is your night.</h2>
+        <p>Our team is in Hyderabad, India. When your counter closes, our shift begins. Orders that arrive by 6 pm are in your ERP by 8 am.</p>
+        <ul class="checks">
+          <li><svg viewBox="0 0 24 24"><use href="#i-check"/></svg>No overtime, no night shift on your side</li>
+          <li><svg viewBox="0 0 24 24"><use href="#i-check"/></svg>Your team starts the day approving, not typing</li>
+        </ul>
+      </div>
+      <div class="frame">
+        <div class="tl-wrap">
+          <div class="tl" role="img" aria-label="Orders sent at 6 pm US Eastern are processed during the India workday and ready by 8 am Eastern">
+            <div></div><div class="h">6pm</div><div class="h">8pm</div><div class="h">10pm</div><div class="h">12am</div><div class="h">2am</div><div class="h">4am</div><div class="h">6am</div><div class="h">8am</div>
+            <div class="who">You · ET</div><div class="bar us">Your team is home. Orders keep coming in.</div>
+            <div class="gap"></div>
+            <div class="who">Us · IST</div><div class="bar in"><span>Our team reads, matches and checks every order.</span></div>
+            <div></div><div class="h">4:30am</div><div class="h">6:30am</div><div class="h">8:30am</div><div class="h">10:30am</div><div class="h">12:30pm</div><div class="h">2:30pm</div><div class="h">4:30pm</div><div class="h">6:30pm</div>
+          </div>
+        </div>
+        <div class="moments">
+          <div class="mo"><b>6:00 pm ET</b><span>You close up</span><p>Customers send orders as usual.</p></div>
+          <div class="mo"><b>Overnight</b><span>We do the typing</span><p>AI matches. Reviewers check.</p></div>
+          <div class="mo"><b>8:00 am ET</b><span>You approve</span><p>Clean drafts wait in your ERP.</p></div>
+        </div>
+        <p class="fine">Times shown for US Eastern. Central, Mountain and Pacific get even more lead time.</p>
+      </div>
+    </div>
+
+    <!-- 03 Formats -->
+    <div class="mod">
+      <div class="txt">
+        <span class="num">03 · What we work with</span>
+        <h2>Any order in. Your ERP's format out.</h2>
+        <p>If your counter can read it, we can process it. We deliver files your ERP already knows how to import, so there's nothing new to set up.</p>
+        <p>Running something else? If it can import a CSV, we can work with it.</p>
+      </div>
+      <div class="frame io">
+        <div class="io-box">
+          <div class="sm-h" style="margin:0">What comes in</div>
+          <div class="io-row"><span class="fmt">EMAIL</span><span><b>Orders in the email body</b>, even "same as last week plus 10"</span></div>
+          <div class="io-row"><span class="fmt">PDF</span><span><b>PDF purchase orders</b>, including scans and faxes</span></div>
+          <div class="io-row"><span class="fmt">XLSX</span><span><b>Excel and CSV files</b> in any layout</span></div>
+          <div class="io-row"><span class="fmt">RFQ</span><span><b>Quote requests</b>, turned into draft quotes</span></div>
+        </div>
+        <span class="down" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 5v14M6 13l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <div class="io-box">
+          <div class="sm-h" style="margin:0">What goes out</div>
+          <div class="erps"><span>Prophet 21</span><span>Eclipse</span><span>NetSuite</span><span>Acumatica</span><span>QuickBooks</span><span>Any CSV import</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- 7. COMPARE -->
+<section class="alt" aria-labelledby="cmp-h">
+  <div class="wrap">
+    <div class="head">
+      <span class="kicker">Your options</span>
+      <h2 id="cmp-h">Hire, buy software, or hand it off.</h2>
+      <p>There are three ways to deal with order entry. Here's how they compare.</p>
+    </div>
+    <div class="cmp">
+      <div class="col"><span class="k">Option 1</span><h3>Hire another order clerk</h3><ul>
+        <li><svg viewBox="0 0 24 24"><use href="#i-x"/></svg>Full salary, benefits and payroll taxes</li>
+        <li><svg viewBox="0 0 24 24"><use href="#i-x"/></svg>Months to hire and train</li>
+        <li><svg viewBox="0 0 24 24"><use href="#i-x"/></svg>Sick days, vacations and turnover</li>
+        <li><svg viewBox="0 0 24 24"><use href="#i-x"/></svg>Hard to scale for busy season</li></ul></div>
+      <div class="col"><span class="k">Option 2</span><h3>Buy software you set up yourself</h3><ul>
+        <li><svg viewBox="0 0 24 24"><use href="#i-x"/></svg>Your team configures templates and rules</li>
+        <li><svg viewBox="0 0 24 24"><use href="#i-x"/></svg>Someone still fixes every miss</li>
+        <li><svg viewBox="0 0 24 24"><use href="#i-x"/></svg>Often per-page or per-user pricing</li>
+        <li><svg viewBox="0 0 24 24"><use href="#i-x"/></svg>Another system to learn and maintain</li></ul></div>
+      <div class="col us"><span class="k">Option 3 · checkline</span><h3>Have it done for you</h3><ul>
+        <li><svg viewBox="0 0 24 24"><use href="#i-check"/></svg>We do the setup and the work</li>
+        <li><svg viewBox="0 0 24 24"><use href="#i-check"/></svg>Every uncertain line checked by a person</li>
+        <li><svg viewBox="0 0 24 24"><use href="#i-check"/></svg>One flat monthly fee</li>
+        <li><svg viewBox="0 0 24 24"><use href="#i-check"/></svg>Handles busy-season spikes</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- 8. PRICING -->
+<section class="alt" id="pricing" aria-labelledby="price-h">
+  <div class="wrap">
+    <div class="head">
+      <span class="kicker">Pricing</span>
+      <h2 id="price-h">One flat monthly fee.</h2>
+    </div>
+    <div class="price">
+      <div class="pcard">
+        <p class="big">Typically less than a third of the cost of a full-time clerk.</p>
+        <p>Your fee is based on your usual order volume. No per-page charges, no per-user seats, no surprise bills in busy season.</p>
+        <p>We quote you a number after your free test, once we've seen your real orders.</p>
+        <a class="btn btn-dark" href="#test" style="justify-self:start">Get a free 20-order test</a>
+      </div>
+      <div class="pcard">
+        <ol class="path">
+          <li><span class="dot">01</span><div><b>Free 20-order test</b><span>Send us 20 real orders. We return them matched to your catalog, in your ERP's format. No cost.</span></div></li>
+          <li><span class="dot">02</span><div><b>30-day paid pilot</b><span>We run your live orders for a month so you see results on your own floor.</span></div></li>
+          <li><span class="dot">03</span><div><b>Flat monthly fee</b><span>Keep going at a fixed monthly price if it's working for you.</span></div></li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 9. SECURITY -->
+<section id="security" aria-labelledby="sec-h">
+  <div class="wrap">
+    <div class="head">
+      <span class="kicker">Data security</span>
+      <h2 id="sec-h">Your customers and prices stay private.</h2>
+      <p>We handle your orders the way you'd expect a trusted employee to.</p>
+    </div>
+    <div class="badges">
+      <span class="badge"><svg viewBox="0 0 24 24"><use href="#i-check"/></svg>NDA signed</span>
+      <span class="badge"><svg viewBox="0 0 24 24"><use href="#i-check"/></svg>Named reviewers only</span>
+      <span class="badge"><svg viewBox="0 0 24 24"><use href="#i-check"/></svg>Encrypted transfer</span>
+      <span class="badge"><svg viewBox="0 0 24 24"><use href="#i-check"/></svg>You approve every order</span>
+    </div>
+    <div class="grid4">
+      <div class="cell"><div class="ico"><svg viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5M9 13h7M9 17h5"/></svg></div><h3>NDA before we start</h3><p>We sign a non-disclosure agreement before you send a single order.</p></div>
+      <div class="cell"><div class="ico"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.6-3.6 3.2-5.5 6.5-5.5"/><rect x="14" y="13" width="7" height="7" rx="1.5"/><path d="M15.5 13v-1.5a2 2 0 0 1 4 0V13"/></svg></div><h3>Named reviewers only</h3><p>Only the people assigned to your account can see your orders.</p></div>
+      <div class="cell"><div class="ico"><svg viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3M12 14v3"/></svg></div><h3>Encrypted transfer</h3><p>Orders and files move between your systems and ours over encrypted connections.</p></div>
+      <div class="cell"><div class="ico"><svg viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg></div><h3>You approve every order</h3><p>Nothing is final until you approve it in your own ERP.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 10. FAQ -->
+<section class="alt" id="faq" aria-labelledby="faq-h">
+  <div class="wrap faq-wrap">
+    <div class="head left" style="margin-bottom:0">
+      <span class="kicker">FAQ</span>
+      <h2 id="faq-h">Frequently asked questions</h2>
+      <p>Something else on your mind? Email <a href="mailto:ismail@mohdismail.com">ismail@mohdismail.com</a>.</p>
+    </div>
+    <div class="faq">
+      <details open><summary>How accurate is it?</summary><p>That depends on your catalog and your customers' orders, so we'd rather show you than quote a number. The free 20-order test shows exactly how we handle your real orders before you pay anything. Every line the AI isn't sure about is checked by a person, and you approve every order.</p></details>
+      <details><summary>How fast do orders come back?</summary><p>Orders received by 6 pm your time are usually waiting in your ERP by 8 am the next morning. If you need faster turnaround for rush orders, we can set that up with you.</p></details>
+      <details><summary>What happens if the AI gets a line wrong?</summary><p>When the AI isn't confident, a trained reviewer on our team checks the line. If we still can't be sure, for example a part you don't stock, we flag it instead of guessing. Every order lands as a draft, so you review it before anything ships.</p></details>
+      <details><summary>Which ERPs do you work with?</summary><p>We deliver orders in the import format for Prophet 21, Eclipse, NetSuite, Acumatica and QuickBooks. If your system can import a CSV file, we can work with it too.</p></details>
+      <details><summary>How long does setup take?</summary><p>You send us your catalog export and some recent orders, and set up email forwarding. We handle the rest, and walk you through it during the free test.</p></details>
+      <details><summary>Do I have to sign a long contract?</summary><p>No. You start with a free test, then a 30-day paid pilot. After that it's a flat monthly fee. We go over the terms with you before the pilot starts.</p></details>
+      <details><summary>Is my data safe?</summary><p>We sign an NDA before you send anything. Only named reviewers assigned to your account see your orders, files are transferred encrypted, and nothing is final until you approve it in your ERP.</p></details>
+      <details><summary>What happens on US holidays?</summary><p>Orders that come in on a US holiday are processed as usual and waiting when you're back. We share our own holiday calendar ahead of time, so you always know when we're working.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- 11. FREE TEST FORM -->
+<section id="test" aria-labelledby="test-h">
+  <div class="wrap">
+    <div class="cta-box">
+      <div class="lead">
+        <h2 id="test-h">See your own orders, done for you.</h2>
+        <p>Tell us a little about your business. We'll run a test with 20 of your real orders and send them back matched to your catalog, in your ERP's format.</p>
+        <ul class="checks">
+          <li><svg viewBox="0 0 24 24"><use href="#i-check"/></svg>No cost and no commitment</li>
+          <li><svg viewBox="0 0 24 24"><use href="#i-check"/></svg>NDA signed before you send anything</li>
+          <li><svg viewBox="0 0 24 24"><use href="#i-check"/></svg>You see results before you decide</li>
+        </ul>
+        <p>Or email <a href="mailto:ismail@mohdismail.com">ismail@mohdismail.com</a></p>
+      </div>
+      <form id="test-form" action="https://formsubmit.co/ajax/ismail@mohdismail.com" method="POST" novalidate>
+        <input type="hidden" name="_subject" value="Checkline free 20-order test request">
+        <input type="hidden" name="_template" value="table">
+        <div class="form-trap" aria-hidden="true"><label for="f-website">Leave this field empty</label><input id="f-website" name="_honey" tabindex="-1" autocomplete="off"></div>
+        <div class="f"><label for="f-name">Name</label><input id="f-name" name="name" autocomplete="name" required></div>
+        <div class="f"><label for="f-company">Company</label><input id="f-company" name="company" autocomplete="organization" required></div>
+        <div class="f"><label for="f-email">Work email</label><input id="f-email" name="email" type="email" autocomplete="email" required></div>
+        <div class="f"><label for="f-phone">Phone</label><input id="f-phone" name="phone" type="tel" autocomplete="tel"></div>
+        <div class="f"><label for="f-erp">ERP you use</label><select id="f-erp" name="erp" required><option value="">Choose one</option><option>Prophet 21</option><option>Eclipse</option><option>NetSuite</option><option>Acumatica</option><option>QuickBooks</option><option>Other / CSV import</option><option>Not sure</option></select></div>
+        <div class="f"><label for="f-vol">Orders per day (approx.)</label><select id="f-vol" name="volume" required><option value="">Choose one</option><option>Fewer than 10</option><option>10–25</option><option>25–50</option><option>50–100</option><option>More than 100</option></select></div>
+        <div class="f full"><label for="f-msg">Message <span class="opt">(optional)</span></label><textarea id="f-msg" name="message" placeholder="What kinds of orders give your team the most trouble?"></textarea></div>
+        <button class="btn btn-dark" type="submit">Send me my free test</button>
+        <p class="fnote" id="fnote" role="status" aria-live="polite">We'll reply by email to set up your test.</p>
+      </form>
+      <p class="privacy-note">When you submit, your contact and company details are sent to Mohammed Ismail through FormSubmit and used to respond to your request. FormSubmit processes the information under its <a href="https://formsubmit.co/privacy.pdf" target="_blank" rel="noopener noreferrer">privacy terms</a>. This website does not store form submissions. Please do not include customer order documents or other sensitive data.</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- 12. FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div style="display:grid;gap:14px;align-content:start">
+        <a class="logo" href="#top"><span class="logo-mark"><svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="15" fill="#146EF5"/><path d="M14 34 25.5 45 38 30h11" fill="none" stroke="#fff" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="52.5" cy="30" r="3.6" fill="#C25700"/></svg></span>checkline</a>
+        <p>Overnight order entry for electrical, plumbing, HVAC and industrial distributors.</p>
+      </div>
+      <div><h4>Product</h4><ul><li><a href="#how">How it works</a></li><li><a href="#product">Sample order</a></li><li><a href="#pricing">Pricing</a></li><li><a href="#test">Free 20-order test</a></li></ul></div>
+      <div><h4>Company</h4><ul><li><a href="#security">Data security</a></li><li><a href="#faq">FAQ</a></li></ul></div>
+      <div><h4>Contact</h4><ul><li><a href="mailto:ismail@mohdismail.com">ismail@mohdismail.com</a></li><li>Mohammed Ismail</li><li>Hyderabad, India</li></ul></div>
+    </div>
+    <div class="legal"><span>© 2026 checkline. All rights reserved.</span></div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var form=document.getElementById('test-form');
+  if(!form)return;
+  var note=document.getElementById('fnote');
+  var submitButton=form.querySelector('button[type="submit"]');
+  form.addEventListener('submit',async function(e){
+    e.preventDefault();
+    var first=null;
+    form.querySelectorAll('[required]').forEach(function(el){
+      var ok=el.value.trim()!=='' && (el.type!=='email'||/^[^@\s]+@[^\s@]+\.[^\s@]+$/.test(el.value));
+      el.classList.toggle('bad',!ok);
+      if(!ok&&!first)first=el;
+    });
+    if(first){note.textContent='Please fill in your name, company, a valid email, your ERP and order volume.';first.focus();return;}
+    if(form.querySelector('[name="_honey"]').value)return;
+    submitButton.disabled=true;
+    submitButton.textContent='Sending…';
+    note.textContent='Sending your request securely…';
+    var payload=Object.fromEntries(new FormData(form).entries());
+    payload._replyto=payload.email;
+    payload._url=window.location.href.split('#')[0];
+    try{
+      var response=await fetch(form.action,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(payload)});
+      var result=await response.json();
+      if(!response.ok||result.success===false)throw new Error('Submission failed');
+      var firstName=document.getElementById('f-name').value.trim().split(/\s+/)[0].replace(/[<>&"]/g,'');
+      form.innerHTML='<div class="done"><div class="ico"><svg viewBox="0 0 24 24"><use href="#i-check"/></svg></div><h3>Thanks, '+firstName+'.</h3><p>Your request was submitted. Mohammed Ismail will follow up by email.</p></div>';
+    }catch(error){
+      note.textContent='We could not send your request just now. Please email ismail@mohdismail.com and we’ll help you directly.';
+      submitButton.disabled=false;
+      submitButton.textContent='Try again';
+    }
+  });
+})();
+</script>
+
+</body></html>
